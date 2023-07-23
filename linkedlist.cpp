@@ -31,6 +31,7 @@ template <class dataType>class LinkedList{
 				Node<dataType>* list = head;
 				head = node;
 				head->next = list;
+				cout<<"Node is Inserted at the head of the list"<<endl;
 			}
 			else if(option == 1)//for insertion at the back
 			{
@@ -106,7 +107,7 @@ template <class dataType>class LinkedList{
 				}					
 			}
 		}
-		void remove(int option , dataType after = NULL , dataType before = NULL)
+		void remove(int option , dataType after = NULL , dataType before = NULL , dataType element = NULL)
 		{
 			if(!head)
 				cout<<"There is no Node in the list"<<endl;
@@ -130,8 +131,8 @@ template <class dataType>class LinkedList{
 				{
 					while(curr->next and curr->next->next != NULL)
 						curr = curr->next;
-					Node<dataType>* del = curr->next->next;
-					curr->next->next = NULL;
+					Node<dataType>* del = curr->next;
+					curr->next = NULL;
 					free(del);
 					cout<<"Node At The Back Deleted"<<endl;
 				}
@@ -139,17 +140,16 @@ template <class dataType>class LinkedList{
 			else if(option == 2) //deletion after an element
 			{
 				Node<dataType>* curr = head;
-				Node<dataType>* prev = NULL;
-				while(curr->data != after)
+				while(curr->next->data != after)
 				{
-					prev = curr;
 					curr = curr->next;
 				}
-				if(curr->data == after)
+				if(curr->next->data == after)
 				{
-					prev->next = curr->next;
-					curr->next = NULL;
-					free(curr);
+					Node<dataType>* temp = curr->next;
+					curr->next = curr->next->next;
+					temp->next = NULL;
+					free(temp);
 					cout<<"Node After "<<after<<" Is Deleted"<<endl;
 				}
 				else
@@ -157,11 +157,11 @@ template <class dataType>class LinkedList{
 					cout<<"Node with data "<<after<<" is not present in the list"<<endl;
 				}
 			}
-			else //deletion before an element
+			else if(option == 3)  //deletion before an element
 			{
 				Node<dataType>* curr = head;
 				Node<dataType>* prev = NULL;
-				if(head->next == before)
+				if(head->next->data == before)
 				{
 					curr = head->next;
 					head->next = NULL;
@@ -173,12 +173,13 @@ template <class dataType>class LinkedList{
 				{
 					while(curr->next)
 					{
-						if(curr->next == before)
+						if(curr->next->data == before)
 						{
 							prev->next = curr->next;
 							curr->next = NULL;
 							free(curr);
 							cout<<"Node Before "<<before<<" Is Deleted"<<endl;
+							break;
 						}
 						else
 						{
@@ -186,8 +187,43 @@ template <class dataType>class LinkedList{
 							curr = curr->next;
 						}
 					}
-					if(prev and prev->next!=before)
+					if(prev and prev->next->data != before)
 						cout<<"Node with key "<<before<<" Is not present in the list"<<endl;
+				}
+			}
+			else //deletion of an exact element
+			{
+				Node<dataType>* curr = head;
+				Node<dataType>* prev = NULL;
+				if(head->data == element)
+				{
+					curr = head->next;
+					head->next = NULL;
+					free(head);
+					head = curr;
+					cout<<"Node With Key "<<element<<" Is Deleted"<<endl;
+				}		
+				else
+				{
+					while(curr)
+					{
+						if(curr->data == element)
+						{
+							prev->next = curr->next;
+							curr->next = NULL;
+							cout<<"Node With Key "<<element<<" Is Deleted"<<endl;
+							break;
+						}
+						else
+						{
+							prev = curr;
+							curr = curr->next;
+						}
+					}
+					if(curr == NULL)
+						cout<<"Node  Is not present in the list"<<endl;
+					else
+						free(curr);
 				}
 			}
 		}
@@ -210,17 +246,54 @@ template <class dataType>class LinkedList{
 				cout<<endl;
 			}
 		}
+		void search(int element)
+		{
+			if(head == NULL)
+				cout<<"List Is Empty"<<endl;
+			else
+			{
+				Node<dataType>* curr = head;
+				while(curr)
+				{
+					if(curr->data == element)
+					{
+						cout<<"Element Found With Key "<<element<<endl;
+						break;
+					}
+					curr = curr->next;
+				}
+				if(curr == NULL)
+					cout<<"Element with Given Key Is Not Present in the List"<<endl;
+			}
+		}
 };
 int main()
 {
 	cout<<"Which type of data are you working on?"<<endl;
-       //cout<<"Press 0 for int,1 for float and 2 for 
-       LinkedList<int> list;
-       list.insert(5,0);
-       list.insert(6,1);
-       list.insert(4,2,5);
-       list.insert(3,3,4,4);
-       list.displayList();
+       	cout<<"Press 0 for int,1 for float and 2 for char"<<endl;
+       	int dataOption;
+	LinkedList<int> list;
+      	list.insert(5,0);
+       	list.insert(6,1);
+       	list.insert(4,2,5);
+       	list.insert(3,3,4,4);
+	list.insert(1,0);
+	list.insert(7,0);
+	list.displayList();
+	list.remove(0);
+	list.displayList();
+	list.remove(1);
+       	list.displayList();
+	list.remove(2,5);
+	list.displayList();
+	list.remove(3,NULL,4);
+	list.displayList();
+	list.insert(8,0);
+	list.displayList();
+	list.remove(4,NULL,NULL,6);
+	list.displayList();
+	list.search(8);
+	list.search(7);
 	return 0;
 }
 
