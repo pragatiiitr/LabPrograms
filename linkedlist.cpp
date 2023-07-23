@@ -106,6 +106,91 @@ template <class dataType>class LinkedList{
 				}					
 			}
 		}
+		void remove(int option , dataType after = NULL , dataType before = NULL)
+		{
+			if(!head)
+				cout<<"There is no Node in the list"<<endl;
+			else if(option == 0) //delete from the front
+			{
+				Node<dataType>* nxtHead = head->next;
+				head->next = NULL;
+				free(head);
+				head = nxtHead;
+				cout<<"Head of the list deleted"<<endl;
+			}
+			else if(option == 1) //delete from the back
+			{
+				Node<dataType>* curr = head;
+				if(head->next == NULL)
+				{
+					free(head);
+					cout<<"Head Node Deleted"<<endl;
+				}
+				else
+				{
+					while(curr->next and curr->next->next != NULL)
+						curr = curr->next;
+					Node<dataType>* del = curr->next->next;
+					curr->next->next = NULL;
+					free(del);
+					cout<<"Node At The Back Deleted"<<endl;
+				}
+			}
+			else if(option == 2) //deletion after an element
+			{
+				Node<dataType>* curr = head;
+				Node<dataType>* prev = NULL;
+				while(curr->data != after)
+				{
+					prev = curr;
+					curr = curr->next;
+				}
+				if(curr->data == after)
+				{
+					prev->next = curr->next;
+					curr->next = NULL;
+					free(curr);
+					cout<<"Node After "<<after<<" Is Deleted"<<endl;
+				}
+				else
+				{
+					cout<<"Node with data "<<after<<" is not present in the list"<<endl;
+				}
+			}
+			else //deletion before an element
+			{
+				Node<dataType>* curr = head;
+				Node<dataType>* prev = NULL;
+				if(head->next == before)
+				{
+					curr = head->next;
+					head->next = NULL;
+					free(head);
+					head = curr;
+					cout<<"Node Before "<<before<<" Is Deleted"<<endl;
+				}		
+				else
+				{
+					while(curr->next)
+					{
+						if(curr->next == before)
+						{
+							prev->next = curr->next;
+							curr->next = NULL;
+							free(curr);
+							cout<<"Node Before "<<before<<" Is Deleted"<<endl;
+						}
+						else
+						{
+							prev = curr;
+							curr = curr->next;
+						}
+					}
+					if(prev and prev->next!=before)
+						cout<<"Node with key "<<before<<" Is not present in the list"<<endl;
+				}
+			}
+		}
 
 };
 int main()
