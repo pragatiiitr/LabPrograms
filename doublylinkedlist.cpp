@@ -29,6 +29,8 @@ template <class dataType>class LinkedList{
 				Node<dataType>* list = head;
 				head = node;
 				head->next = list;
+				if(head->next)
+				head->next->prev = head;
 				cout<<"Node is Inserted at the head of the list"<<endl;
 			}
 			else if(option == 1)//for insertion at the back
@@ -45,6 +47,7 @@ template <class dataType>class LinkedList{
 					curr = curr->next;
 				}
 				curr->next = node;
+				node->prev = curr;
 				cout<<"New Node Inserted"<<endl;
 
 			}
@@ -58,6 +61,9 @@ template <class dataType>class LinkedList{
 					{
 						node->next = curr->next;
 						curr->next = node;
+						node->prev = curr;
+						if(node->next)
+							node->next->prev = node;
 						flag = true;
 						cout<<"New Node Inserted After "<<after<<endl;
 						break;
@@ -73,7 +79,6 @@ template <class dataType>class LinkedList{
 			else //for insertion before an element
 			{
 				Node<dataType>* curr = head;
-				Node<dataType>* prev = NULL;
 				bool flag = false;
 				while(curr)
 				{
@@ -83,11 +88,15 @@ template <class dataType>class LinkedList{
 						{
 							head = node;
 							head->next = curr;
+							curr->prev = head;
 						}
 						else
 						{
-							prev->next = node;
+							Node<dataType>* temp = curr->prev;
+							temp->next = node;
+							node->prev = temp;
 							node->next = curr;
+							curr->prev = node;
 						}
 						flag = true;
 						cout<<"New Node Inserted Before "<<before<<endl;
@@ -95,7 +104,6 @@ template <class dataType>class LinkedList{
 					}
 					else
 					{
-						prev = curr;
 						curr = curr->next;
 					}
 				}
