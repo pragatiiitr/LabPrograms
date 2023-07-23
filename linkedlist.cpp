@@ -191,7 +191,25 @@ template <class dataType>class LinkedList{
 				}
 			}
 		}
-
+		void displayList()
+		{
+			if(head == NULL)
+			{
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				cout<<"List Items ---- "<<endl;
+				cout<<head->data;
+				Node<dataType>* curr = head->next;
+				while(curr)
+				{
+					cout<<"-->"<<curr->data;
+					curr = curr->next;
+				}
+				cout<<endl;
+			}
+		}
 };
 int main()
 {
@@ -199,7 +217,10 @@ int main()
        //cout<<"Press 0 for int,1 for float and 2 for 
        LinkedList<int> list;
        list.insert(5,0);
-       list.display();
+       list.insert(6,1);
+       list.insert(4,2,5);
+       list.insert(3,3,4,4);
+       list.displayList();
 	return 0;
 }
 
