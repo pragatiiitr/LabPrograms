@@ -120,6 +120,8 @@ template <class dataType>class LinkedList{
 			else if(option == 0) //delete from the front
 			{
 				Node<dataType>* nxtHead = head->next;
+				if(head->next)
+					head->next->prev = NULL;
 				head->next = NULL;
 				free(head);
 				head = nxtHead;
@@ -138,6 +140,7 @@ template <class dataType>class LinkedList{
 					while(curr->next and curr->next->next != NULL)
 						curr = curr->next;
 					Node<dataType>* del = curr->next;
+					del->prev = NULL;
 					curr->next = NULL;
 					free(del);
 					cout<<"Node At The Back Deleted"<<endl;
@@ -153,7 +156,10 @@ template <class dataType>class LinkedList{
 				if(curr->next->data == after)
 				{
 					Node<dataType>* temp = curr->next;
+					temp->prev = NULL;
 					curr->next = curr->next->next;
+					if(curr->next->next)
+						curr->next->next->prev = curr;
 					temp->next = NULL;
 					free(temp);
 					cout<<"Node After "<<after<<" Is Deleted"<<endl;
@@ -166,10 +172,11 @@ template <class dataType>class LinkedList{
 			else if(option == 3)  //deletion before an element
 			{
 				Node<dataType>* curr = head;
-				Node<dataType>* prev = NULL;
 				if(head->next->data == before)
 				{
 					curr = head->next;
+					if(curr)
+						curr->prev = NULL;
 					head->next = NULL;
 					free(head);
 					head = curr;
@@ -177,23 +184,25 @@ template <class dataType>class LinkedList{
 				}		
 				else
 				{
+					Node<dataType>* temp = NULL;
 					while(curr->next)
 					{
 						if(curr->next->data == before)
 						{
-							prev->next = curr->next;
+							temp = curr->prev;
+							temp->next = curr->next;
 							curr->next = NULL;
+							temp->next->prev = temp;
 							free(curr);
 							cout<<"Node Before "<<before<<" Is Deleted"<<endl;
 							break;
 						}
 						else
 						{
-							prev = curr;
 							curr = curr->next;
 						}
 					}
-					if(prev and prev->next->data != before)
+					if(curr == NULL and temp == NULL)
 						cout<<"Node with key "<<before<<" Is not present in the list"<<endl;
 				}
 			}
@@ -204,6 +213,8 @@ template <class dataType>class LinkedList{
 				if(head->data == element)
 				{
 					curr = head->next;
+					if(curr)
+						curr->prev = NULL;
 					head->next = NULL;
 					free(head);
 					head = curr;
@@ -238,19 +249,27 @@ template <class dataType>class LinkedList{
 			if(head == NULL)
 			{
 				cout<<"List is empty"<<endl;
+				return;
 			}
-			else
+			cout<<"List Items ---- "<<endl;
+			cout<<head->data;
+			Node<dataType>* curr = head;
+			while(curr->next)
 			{
-				cout<<"List Items ---- "<<endl;
-				cout<<head->data;
-				Node<dataType>* curr = head->next;
-				while(curr)
-				{
-					cout<<"-->"<<curr->data;
-					curr = curr->next;
-				}
-				cout<<endl;
+				cout<<"-->"<<curr->next->data;
+				curr = curr->next;
 			}
+			cout<<endl;
+			cout<<"List Items in Reverse Order ----"<<endl;
+			cout<<curr->data;
+			curr = curr->prev;
+                        while(curr)
+			{
+				cout<<"<---"<<curr->data;
+				curr = curr->prev;
+			}
+			cout<<endl;
+
 		}
 		void search(int element)
 		{
