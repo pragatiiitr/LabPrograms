@@ -4,7 +4,7 @@ template <class dataType>class Node{
 	public:
 		dataType data;
 		Node<dataType>*  next;
-		Node<dataType>* prev
+		Node<dataType>* prev;
 	Node()
 	{
 		this->next = NULL;
@@ -149,11 +149,11 @@ template <class dataType>class LinkedList{
 			else if(option == 2) //deletion after an element
 			{
 				Node<dataType>* curr = head;
-				while(curr->next->data != after)
+				while(curr->data != after)
 				{
 					curr = curr->next;
 				}
-				if(curr->next->data == after)
+				if(curr->data == after)
 				{
 					Node<dataType>* temp = curr->next;
 					temp->prev = NULL;
@@ -251,14 +251,15 @@ template <class dataType>class LinkedList{
 				cout<<"List is empty"<<endl;
 				return;
 			}
-		//	cout<<"List Items ---- "<<endl;
-		//	cout<<head->data;
-		//	Node<dataType>* curr = head;
-		//	while(curr->next)
-		//	{
-		//		cout<<"-->"<<curr->next->data;
-		//		curr = curr->next;
-		//	}
+			cout<<"List Items ---- "<<endl;
+			cout<<head->data;
+			Node<dataType>* curr = head;
+			while(curr->next)
+			{
+				cout<<"-->"<<curr->next->data;
+				curr = curr->next;
+			}
+			cout<<endl;
 			cout<<"List Items in Reverse Order ----"<<endl;
 			cout<<curr->data;
 			curr = curr->prev;
