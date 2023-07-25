@@ -157,9 +157,9 @@ template <class dataType>class LinkedList{
 				{
 					Node<dataType>* temp = curr->next;
 					temp->prev = NULL;
-					curr->next = curr->next->next;
-					if(curr->next->next)
-						curr->next->next->prev = curr;
+					curr->next = temp->next;
+					if(curr->next)
+						curr->next->prev = curr;
 					temp->next = NULL;
 					free(temp);
 					cout<<"Node After "<<after<<" Is Deleted"<<endl;
