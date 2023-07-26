@@ -18,7 +18,7 @@ template <class dataType>class LinkedList{
 		{
 			this->head = NULL;
 		}
-		void insert(dataType value , int option , dataType after = NULL , dataType before = NULL)
+		void insert(dataType value , int option , dataType after = NULL)
 		{
 			Node<dataType>* node = new Node<dataType>[1];
 			node->data = value;
@@ -63,13 +63,19 @@ template <class dataType>class LinkedList{
 			else if(option == 2)//for insertion after an element
 			{
 				Node<dataType>* curr = head;
-				if(head->data == after)
+				if(head->data == after and head->next)
 				{
 					node->next = curr->next;
 					curr->next = node;
 					cout<<"New Node Inserted After "<<after<<endl;
 					return;
 
+				}
+				else if(head->data == after and head->next == NULL)
+				{
+					head->next = node;
+					node->next = head;
+					return;
 				}
 				curr = curr->next;
 				while(curr->next != head)
@@ -88,7 +94,7 @@ template <class dataType>class LinkedList{
 				cout<<"Given Node not found in the list"<<endl;
 			}
 		}
-		void remove(int option , dataType after = NULL , dataType before = NULL , dataType element = NULL)
+		void remove(int option , dataType element = NULL)
 		{
 			if(!head)
 				cout<<"There is no Node in the list"<<endl;
@@ -222,38 +228,87 @@ template <class dataType>class LinkedList{
 					}
 					curr = curr->next;
 				}
-				if(curr == NULL)
+				if(curr == head)
 					cout<<"Element with Given Key Is Not Present in the List"<<endl;
 			}
 		}
 };
 int main()
 {
-	cout<<"Which type of data are you working on?"<<endl;
-       	cout<<"Press 0 for int,1 for float and 2 for char"<<endl;
-       	int dataOption;
 	LinkedList<int> list;
-      	list.insert(5,0);
-       	list.insert(6,1);
-       	list.insert(4,2,5);
+	while(1)
+	{
+		cout<<"Press 0 for insert, 1 for deleting an element , 2 for searching an element in circular linked list, 3 for displaying the list and 4 to exit"<<endl;
+		int option;
+		cin>>option;
+		switch(option)
+		{
+			case 0:
+				{
+					int choice , element , after = NULL;
+					cout<<"Press 0 to insert at the front, 1 to insert at the back and 2 to insert after an element"<<endl;
+					cin>>choice;
+					cout<<"Enter the element you want to insert"<<endl;
+					cin>>element;
+					if(choice == 2)
+					{
+						cout<<"Enter the element after which you want to insert the current element"<<endl;
+						cin>>after;
+					}
+					list.insert(element,choice,after);
+					break;
+				}
+			case 1:
+				{
+					int choice, element = NULL;
+					cout<<"Press 0 to delete from front , 1 to delete from back and 2 to delete the exact element"<<endl;
+					cin>>choice;
+					if(choice == 2)
+					{
+						cout<<"Enter the element you want to delete"<<endl;
+						cin>>element;
+					}
+					list.remove(choice,element);
+					break;
+				}
+			case 2:
+				{
+					cout<<"Enter the element you want to search in the list"<<endl;
+					int element;
+					cin>>element;
+					list.search(element);
+					break;
+				}
+			case 3:
+				{
+					list.displayList();
+					break;
+				}
+			case 4:
+				exit(1);
+		}
+	}
+	  // 	list.insert(5,0);
+   //    	list.insert(6,1);
+ //      	list.insert(4,2,5);
 //     	list.insert(3,3,4,4);
-	list.insert(1,0);
-	list.insert(7,0);
-	list.displayList();
-	list.remove(0);
-	list.displayList();
-	list.remove(1);
-       	list.displayList();
-	list.remove(2,5,5,5);
-	list.displayList();
-	list.remove(3,NULL,NULL,4);
-	list.displayList();
-	list.insert(8,0);
-	list.displayList();
-	list.remove(4,NULL,NULL,6);
-	list.displayList();
-	list.search(8);
-	list.search(7);
+//	list.insert(1,0);
+//	list.insert(7,0);
+//	list.displayList();
+//	list.remove(0);
+//	list.displayList();
+//	list.remove(1);
+  //     	list.displayList();
+//	list.remove(2,5,5,5);
+//	list.displayList();
+//	list.remove(3,NULL,NULL,4);
+//	list.displayList();
+//	list.insert(8,0);
+//	list.displayList();
+//	list.remove(4,NULL,NULL,6);
+//	list.displayList();
+//	list.search(8);
+//	list.search(7);
 	return 0;
 }
 
