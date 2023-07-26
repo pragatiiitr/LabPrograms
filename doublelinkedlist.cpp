@@ -362,9 +362,6 @@ int main()
 				exit(1);
 		}
 	}
-      	//list.insert(5,0);
-      // 	list.insert(6,1);
-       	//list.insert(4,2,5);
 	return 0;
 }
 

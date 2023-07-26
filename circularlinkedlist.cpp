@@ -288,27 +288,6 @@ int main()
 				exit(1);
 		}
 	}
-	  // 	list.insert(5,0);
-   //    	list.insert(6,1);
- //      	list.insert(4,2,5);
-//     	list.insert(3,3,4,4);
-//	list.insert(1,0);
-//	list.insert(7,0);
-//	list.displayList();
-//	list.remove(0);
-//	list.displayList();
-//	list.remove(1);
-  //     	list.displayList();
-//	list.remove(2,5,5,5);
-//	list.displayList();
-//	list.remove(3,NULL,NULL,4);
-//	list.displayList();
-//	list.insert(8,0);
-//	list.displayList();
-//	list.remove(4,NULL,NULL,6);
-//	list.displayList();
-//	list.search(8);
-//	list.search(7);
 	return 0;
 }
 
