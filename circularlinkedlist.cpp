@@ -233,61 +233,61 @@ template <class dataType>class LinkedList{
 			}
 		}
 };
-int main()
-{
-	LinkedList<int> list;
-	while(1)
-	{
-		cout<<"Press 0 for insert, 1 for deleting an element , 2 for searching an element in circular linked list, 3 for displaying the list and 4 to exit"<<endl;
-		int option;
-		cin>>option;
-		switch(option)
-		{
-			case 0:
-				{
-					int choice , element , after = NULL;
-					cout<<"Press 0 to insert at the front, 1 to insert at the back and 2 to insert after an element"<<endl;
-					cin>>choice;
-					cout<<"Enter the element you want to insert"<<endl;
-					cin>>element;
-					if(choice == 2)
-					{
-						cout<<"Enter the element after which you want to insert the current element"<<endl;
-						cin>>after;
-					}
-					list.insert(element,choice,after);
-					break;
-				}
-			case 1:
-				{
-					int choice, element = NULL;
-					cout<<"Press 0 to delete from front , 1 to delete from back and 2 to delete the exact element"<<endl;
-					cin>>choice;
-					if(choice == 2)
-					{
-						cout<<"Enter the element you want to delete"<<endl;
-						cin>>element;
-					}
-					list.remove(choice,element);
-					break;
-				}
-			case 2:
-				{
-					cout<<"Enter the element you want to search in the list"<<endl;
-					int element;
-					cin>>element;
-					list.search(element);
-					break;
-				}
-			case 3:
-				{
-					list.displayList();
-					break;
-				}
-			case 4:
-				exit(1);
-		}
-	}
-	return 0;
-}
+// int main()
+// {
+// 	LinkedList<int> list;
+// 	while(1)
+// 	{
+// 		cout<<"Press 0 for insert, 1 for deleting an element , 2 for searching an element in circular linked list, 3 for displaying the list and 4 to exit"<<endl;
+// 		int option;
+// 		cin>>option;
+// 		switch(option)
+// 		{
+// 			case 0:
+// 				{
+// 					int choice , element , after = NULL;
+// 					cout<<"Press 0 to insert at the front, 1 to insert at the back and 2 to insert after an element"<<endl;
+// 					cin>>choice;
+// 					cout<<"Enter the element you want to insert"<<endl;
+// 					cin>>element;
+// 					if(choice == 2)
+// 					{
+// 						cout<<"Enter the element after which you want to insert the current element"<<endl;
+// 						cin>>after;
+// 					}
+// 					list.insert(element,choice,after);
+// 					break;
+// 				}
+// 			case 1:
+// 				{
+// 					int choice, element = NULL;
+// 					cout<<"Press 0 to delete from front , 1 to delete from back and 2 to delete the exact element"<<endl;
+// 					cin>>choice;
+// 					if(choice == 2)
+// 					{
+// 						cout<<"Enter the element you want to delete"<<endl;
+// 						cin>>element;
+// 					}
+// 					list.remove(choice,element);
+// 					break;
+// 				}
+// 			case 2:
+// 				{
+// 					cout<<"Enter the element you want to search in the list"<<endl;
+// 					int element;
+// 					cin>>element;
+// 					list.search(element);
+// 					break;
+// 				}
+// 			case 3:
+// 				{
+// 					list.displayList();
+// 					break;
+// 				}
+// 			case 4:
+// 				exit(1);
+// 		}
+// 	}
+// 	return 0;
+// }
 
