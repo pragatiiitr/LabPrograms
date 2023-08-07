@@ -267,76 +267,76 @@ template <class dataType>class LinkedList{
 			}
 		}
 };
-int main()
-{
-	LinkedList<int> list;
-	while(1)
-	{
-		cout<<"Press 0 for insert, 1 for deleting an element , 2 for searching an element in doubly linked list, 3 for displaying the list and 4 to exit"<<endl;
-		int option;
-		cin>>option;
-		switch(option)
-		{
-			case 0:
-				{
-					int choice , element , after = NULL , before = NULL;
-					cout<<"Press 0 to insert at the front, 1 to insert at the back and 2 to insert after an element, 3 to insert before an element"<<endl;
-					cin>>choice;
-					cout<<"Enter the element you want to insert"<<endl;
-					cin>>element;
-					if(choice == 2)
-					{
-						cout<<"Enter the element after which you want to insert the current element"<<endl;
-						cin>>after;
-					}
-					else if(choice == 3)
-					{
-						cout<<"Enter the element before which you want to insert the current element"<<endl;
-						cin>>before;
-					}
-					list.insert(element,choice,after,before);
-					break;
-				}
-			case 1:
-				{
-					int choice, after = NULL, before = NULL, element = NULL;
-					cout<<"Press 0 to delete from front , 1 to delete from back,2 to delete after an element, 3 to delete before an element and 4 to delete an exact element"<<endl;
-					cin>>choice;
-					if(choice == 2)
-					{
-						cout<<"Enter the element after which you want to delete"<<endl;
-						cin>>after;
-					}
-					else if(choice == 3)
-					{
-						cout<<"Enter the element before which you want to delete"<<endl;
-						cin>>before;
-					}
-					else if(choice == 4)
-					{
-						cout<<"Enter the element which you want to delete"<<endl;
-						cin>>element;
-					}
-					list.remove(choice , after, before , element);
-					break;
-				}
-			case 2:
-				{
-					cout<<"Enter the element you want to search in the list"<<endl;
-					int element;
-					cin>>element;
-					list.search(element);
-					break;
-				}
-			case 3:
-				{
-					list.displayList();
-					break;
-				}
-			case 4:
-				exit(1);
-		}
-	}
-	return 0;
-}
+// int main()
+// {
+// 	LinkedList<int> list;
+// 	while(1)
+// 	{
+// 		cout<<"Press 0 for insert, 1 for deleting an element , 2 for searching an element in doubly linked list, 3 for displaying the list and 4 to exit"<<endl;
+// 		int option;
+// 		cin>>option;
+// 		switch(option)
+// 		{
+// 			case 0:
+// 				{
+// 					int choice , element , after = NULL , before = NULL;
+// 					cout<<"Press 0 to insert at the front, 1 to insert at the back and 2 to insert after an element, 3 to insert before an element"<<endl;
+// 					cin>>choice;
+// 					cout<<"Enter the element you want to insert"<<endl;
+// 					cin>>element;
+// 					if(choice == 2)
+// 					{
+// 						cout<<"Enter the element after which you want to insert the current element"<<endl;
+// 						cin>>after;
+// 					}
+// 					else if(choice == 3)
+// 					{
+// 						cout<<"Enter the element before which you want to insert the current element"<<endl;
+// 						cin>>before;
+// 					}
+// 					list.insert(element,choice,after,before);
+// 					break;
+// 				}
+// 			case 1:
+// 				{
+// 					int choice, after = NULL, before = NULL, element = NULL;
+// 					cout<<"Press 0 to delete from front , 1 to delete from back,2 to delete after an element, 3 to delete before an element and 4 to delete an exact element"<<endl;
+// 					cin>>choice;
+// 					if(choice == 2)
+// 					{
+// 						cout<<"Enter the element after which you want to delete"<<endl;
+// 						cin>>after;
+// 					}
+// 					else if(choice == 3)
+// 					{
+// 						cout<<"Enter the element before which you want to delete"<<endl;
+// 						cin>>before;
+// 					}
+// 					else if(choice == 4)
+// 					{
+// 						cout<<"Enter the element which you want to delete"<<endl;
+// 						cin>>element;
+// 					}
+// 					list.remove(choice , after, before , element);
+// 					break;
+// 				}
+// 			case 2:
+// 				{
+// 					cout<<"Enter the element you want to search in the list"<<endl;
+// 					int element;
+// 					cin>>element;
+// 					list.search(element);
+// 					break;
+// 				}
+// 			case 3:
+// 				{
+// 					list.displayList();
+// 					break;
+// 				}
+// 			case 4:
+// 				exit(1);
+// 		}
+// 	}
+// 	return 0;
+// }
 
