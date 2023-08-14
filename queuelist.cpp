@@ -69,10 +69,10 @@ int main()
                 queue.enqueue(value);
                 break;
             case 2:
-                q.dequeue();
+                queue.dequeue();
                 break;
             case 3:
-                  q.display()
+                  queue.display()
                   break;
               case 4:
                   exit(1);
