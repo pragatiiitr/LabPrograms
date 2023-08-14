@@ -1,27 +1,44 @@
 #include "array.cpp"
 #include<iostream>
 using namespace std;
-template < typename datatype>
+template < typename dataType>
 class queue{
 	public:
-		int size;
-		Array<datatype> array;
-		void create(dataType capacity)
+		int size = 0;
+        int len = 0;
+		Array<dataType> array;
+		void create(int capacity)
 	    {
 	     	 size = capacity;
 		     array.CreateArray(size);
 	    }
-	    void enqueue(dataType element);
+	    void enqueue(dataType element)
 	    {
-	     	 array.Insert(element);
+	     	 array.Insert(element, 0);
+             len++;
 	    }
-      void dequeue()
+        void dequeue()
 	    {
-	      	array.remove(size-1);
+            if(len == 0)
+			{
+				cout<<"Queue is empty"<<endl;
+				return;
+			}
+	      	array.remove(len-1);
+            len--;
 	    }
 	     void display()
 	    {
-  		   array.Display();
+            if(len ==0 )
+            {
+                cout<<"Queue is empty"<<endl;
+                return;
+            }
+  		   for(int i=0;i<len;i++)
+           {
+            cout<<array.arr[i]<<" ";
+           }
+           cout<<endl;
 	    }
 
 };
@@ -47,11 +64,11 @@ int main(){
                 q.dequeue();
                 break;
             case 3:
-                  q.display()
+                  q.display();
                   break;
-              case 4:
+            case 4:
                   exit(1);
-              default:
+            default:
                   cout << "Invalid choice. Try again." <<endl;
         }
     }

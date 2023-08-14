@@ -10,7 +10,8 @@ template < typename dataType>class Stack{
 		}
     void push(dataType element)
     {
-      Node<dataType>* curr = new Node(element);
+      Node<dataType>* curr = new Node<dataType>[1];
+      curr->data = element;
       curr->next = stack;
       stack = curr;
       cout<<"New Node Inserted at the top"<<endl;
@@ -23,8 +24,10 @@ template < typename dataType>class Stack{
         return;
       }
       cout<<"Element "<<stack->data<<"will be popped"<<endl;
-      Node<dataType>* curr = stack->data;
+      Node<dataType>* curr = stack;
       stack = stack->next;
+      curr->next = NULL;
+      free(curr);
     }
     void peek()
     {
@@ -56,7 +59,7 @@ int main()
                 st.pop();
                 break;
             case 3:
-                  st.peek()
+                  st.peek();
                   break;
               case 4:
                   exit(1);

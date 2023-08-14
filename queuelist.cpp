@@ -10,15 +10,16 @@ template <class dataType>class Queue{
 		}
     void Enqueue(dataType element)
     {
-      Node<dataType> val = new Node(element);
+      Node<dataType>* val = new Node<dataType>[1];
+      val->data = element;
       val->next = q;
       q = val;
       cout<<"Element has been inserted at the front"<<endl;
     }
     void Dequeue()
     {
-      Node<dataType> curr = q;
-      Node<dataType> prev = q;
+      Node<dataType>* curr = q;
+      Node<dataType>* prev = q;
       if(!q)
       {
         cout<<"There is no element in the queue"<<endl;
@@ -32,6 +33,7 @@ template <class dataType>class Queue{
       }
       while(curr->next and curr->next->next != NULL)
       { 
+          prev = curr;
           curr = curr->next;
       }
       prev = curr;
@@ -44,12 +46,13 @@ template <class dataType>class Queue{
     {
       if(!q)
         cout<<"The queue is empty"<<endl;
-      Node<dataType> curr = q;
+      Node<dataType>* curr = q;
       while(curr)
       {
         cout<<curr->data<<"->";
+        curr = curr->next;
       }
-      cout<<"NULL";
+      cout<<"NULL"<<endl;
     }
 };
 int main()
@@ -66,13 +69,13 @@ int main()
                 cout << "Enter value to enqueue: ";
                 int value;
                 cin >> value;
-                queue.enqueue(value);
+                queue.Enqueue(value);
                 break;
             case 2:
-                queue.dequeue();
+                queue.Dequeue();
                 break;
             case 3:
-                  queue.display()
+                  queue.display();
                   break;
               case 4:
                   exit(1);

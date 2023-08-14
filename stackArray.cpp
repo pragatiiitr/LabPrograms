@@ -5,25 +5,36 @@ template <typename dataType>
 class Stack{
 	public:
 	    int size = 0;
+		int len = 0;
 	    Array<dataType> array;
 	    void create(dataType capacity)
 	    {
 	     	 size = capacity;
-		 array.CreateArray(size);
+		     array.CreateArray(size);
 	    }
-	    void push(dataType element);
+	    void push(dataType element)
 	    {
-	     	 array.Insert(element);
+	     	 array.Insert(element,0);
+			 len++;
 	    }
-            void pop()
+        void pop()
 	    {
+			if(len == 0)
+			{
+				cout<<"Stack is empty"<<endl;
+				return;
+			}
 	      	array.removeFront();
+			len--;
 	    }
-	     void peek()
+	    void peek()
 	    {
-		 if(length == 0)
+		 if(len == 0)
+		{	
 			cout<<"Stack is Empty"<<endl;
-		cout<<"Top element is "<<array[0]<<endl;
+			return;
+		}
+		cout<<"Top element is "<<array.arr[0]<<endl;
 	    }
     
 };
@@ -50,7 +61,7 @@ int main(){
 	                st.pop();
 	                break;
 	            case 3:
-	                  st.peek()
+	                  st.peek();
 	                  break;
 	              case 4:
 	                  exit(1);
