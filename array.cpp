@@ -41,6 +41,22 @@ template <class dataType> class Array
 			length++;
 			cout<<"Element Inserted"<<endl;
 		}
+		void removeFront()
+		{
+			if(length == 0)
+			{
+				cout<<"Array is empty"<<endl;
+				return;
+			}
+			dataType* arr_new = new dataType[length - 1];
+			for(int it=1 ; it < length ; it++)
+			{
+				arr_new[it-1]  = arr[it];
+			}
+			length--;
+			arr = arr_new
+			cout<<"Top element has been deleted"<<endl;
+		}
 		void remove(int index)
 		{
 			dataType* arr_new = new dataType[length - 1];
