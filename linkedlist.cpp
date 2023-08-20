@@ -38,7 +38,7 @@ template <class dataType>class LinkedList{
 				if(head == NULL)
 				{
 					head = node;
-				        cout<<"Head of the list inserted"<<endl;
+				        //cout<<"Head of the list inserted"<<endl;
 					return;
 				}
 				Node<dataType>* curr = head;
@@ -47,7 +47,7 @@ template <class dataType>class LinkedList{
 					curr = curr->next;
 				}
 				curr->next = node;
-				cout<<"New Node Inserted"<<endl;
+				//cout<<"New Node Inserted"<<endl;
 
 			}
 			else if(option == 2)//for insertion after an element
@@ -235,7 +235,7 @@ template <class dataType>class LinkedList{
 			}
 			else
 			{
-				cout<<"List Items ---- "<<endl;
+				//cout<<"List Items ---- "<<endl;
 				cout<<head->data;
 				Node<dataType>* curr = head->next;
 				while(curr)

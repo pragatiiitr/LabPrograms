@@ -90,6 +90,10 @@ template <class dataType> class Array
 			}
 			cout<<"Element NOt Found in the Array"<<endl;
 		}
+		dataType getElement(int index)
+		{
+			return arr[index];
+		}
 		void Display()
 		{
 			cout<<"Elements of Array are -- "<<endl;
