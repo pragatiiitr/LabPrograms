@@ -1,9 +1,13 @@
 #include "adjacencymatrix.cpp"
 #include "queueArray.cpp"
-#include "array.cpp"
 #include <iostream> 
 
-void bfs(dataType start)
+int main()
+{
+	cout<<"Hello"<<endl;
+	return 0;
+}
+/*void bfs(dataType start)
 {
 	queue<int> q;
 	Array<int> vis;
@@ -67,4 +71,4 @@ int main() {
    cin>>start;
    bfs(start);
    return 0;
-}
+}*/

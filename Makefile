@@ -1,15 +1,18 @@
-XX = g++
-CXXFLAGS = -Wall -g
+output: bfs.o
+	g++ -o bfs.o -o output
 
-all: t1 t2
+bfs.o: adjacencymatrix.o queueArray.o bfs.cpp
+	g++ -c bfs.cpp
 
-t1: darray.o test1.o
-	$(CC) array.o test1.o -o t1
+adjacencymatrix.o: array.o adjacencymatrix.cpp
+	g++ -c adjacencymatrix.cpp
 
-t2: darray.o test2.o
-	$(CC) array.o test2.o -o t2
+queueArray.o: array.o queueArray.cpp
+	g++ -c queueArray.cpp
 
-darray.o: dynamicarray.cpp
-	
+array.o: array.cpp
+	g++ -c array.cpp
+
 clean: 
-	rm -f $(PROGRAMS)
+	rm *o 
+
