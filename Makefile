@@ -1,11 +1,15 @@
-CXX = g++
+XX = g++
 CXXFLAGS = -Wall -g
 
-PROGRAMS = adjmatrix
+all: t1 t2
 
-all: $(PROGRAMS)
+t1: darray.o test1.o
+	$(CC) array.o test1.o -o t1
 
-adjmatrix: array.cpp adjacencymatrix.cpp
-	$(CXX) $(CXXFLAGS) -o $@ $^
+t2: darray.o test2.o
+	$(CC) array.o test2.o -o t2
+
+darray.o: dynamicarray.cpp
+	
 clean: 
 	rm -f $(PROGRAMS)

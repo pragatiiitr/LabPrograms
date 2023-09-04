@@ -31,7 +31,7 @@ template <class dataType>class LinkedList{
 				Node<dataType>* list = head;
 				head = node;
 				head->next = list;
-				cout<<"Node is Inserted at the head of the list"<<endl;
+				//cout<<"Node is Inserted at the head of the list"<<endl;
 			}
 			else if(option == 1)//for insertion at the back
 			{
@@ -110,22 +110,22 @@ template <class dataType>class LinkedList{
 		void remove(int option , dataType after = NULL , dataType before = NULL , dataType element = NULL)
 		{
 			if(!head)
-				cout<<"There is no Node in the list"<<endl;
+				return;
 			else if(option == 0) //delete from the front
 			{
 				Node<dataType>* nxtHead = head->next;
 				head->next = NULL;
 				free(head);
 				head = nxtHead;
-				cout<<"Head of the list deleted"<<endl;
+				//cout<<"Head of the list deleted"<<endl;
 			}
 			else if(option == 1) //delete from the back
 			{
 				Node<dataType>* curr = head;
-				if(head->next == NULL)
+				if(head == NULL)
 				{
 					free(head);
-					cout<<"Head Node Deleted"<<endl;
+					//cout<<"Head Node Deleted"<<endl;
 				}
 				else
 				{
@@ -134,7 +134,7 @@ template <class dataType>class LinkedList{
 					Node<dataType>* del = curr->next;
 					curr->next = NULL;
 					free(del);
-					cout<<"Node At The Back Deleted"<<endl;
+					//cout<<"Node At The Back Deleted"<<endl;
 				}
 			}
 			else if(option == 2) //deletion after an element
