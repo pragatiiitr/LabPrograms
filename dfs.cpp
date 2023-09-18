@@ -1,28 +1,27 @@
 #include "header.h"
 #include "adjacencymatrix.cpp"
-#include "queueArray.cpp"
+#include "stackArray.cpp"
 #include <iostream> 
 
-void bfs(int start,int size, GraphMatrix<int> &graph)
+void dfs(int start,int size, GraphMatrix<int> &graph)
 {
-	queue<int> q;
+	Stack<int> s;
 	Array<int> vis;
 	vis.CreateArray(size);
-	q.create(size);
-	q.enqueue(start);
-	vis.arr[start] = 1;
-	while(!q.IsEmpty())
+	s.create(size);
+	s.push(start);
+	while(s.len)
 	{
-		int temp = q.rear();
-		q.dequeue();
+		int temp = s.peek();
+		s.pop();
 		cout<<temp<<"-->";
+		vis.arr[temp] = 1;
 		for(int index=0;index<size;index++)
 		{
 			int element = index;
 			if(!vis.arr[index] and graph.getEdge(temp, element, NULL) == 1)
 			{
-				vis.arr[index] = 1;
-				q.enqueue(element);
+				s.push(element);
 				//cout<<"top "<<q.top()<<endl;
 			}
 		}
@@ -65,6 +64,6 @@ int main() {
    int start;
    cout<<"Enter the starting element"<<endl;
    cin>>start;
-   bfs(start,size,graph);
+   dfs(start,size,graph);
    return 0;
 }

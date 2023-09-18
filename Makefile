@@ -1,18 +1,21 @@
-output: bfs.o
-	g++ -o bfs.o -o output
+CC = g++
+CFLAGS = -Wall -O2 -ansi -pedantic -Werror
 
-bfs.o: adjacencymatrix.o queueArray.o bfs.cpp
-	g++ -c bfs.cpp
+output: bfs.o adjacencymatrix.o queueArray.o array.o
+	$(CC) $(CFLAGS) bfs.o adjacencymatrix.o queueArray.o array.o -o output
 
-adjacencymatrix.o: array.o adjacencymatrix.cpp
-	g++ -c adjacencymatrix.cpp
-
-queueArray.o: array.o queueArray.cpp
-	g++ -c queueArray.cpp
-
-array.o: array.cpp
-	g++ -c array.cpp
+bfs.o: bfs.cpp
+	$(CC) $(CFLAGS) -c bfs.cpp
+ 	
+adjacencymatrix.o: adjacencymatrix.cpp 
+			$(CC) $(CFLAGS) -c adjacencymatrix.cpp	
+		
+queueArray.o: queueArray.cpp
+		$(CC) $(CFLAGS) -c queueArray.cpp
+		
+array.o: array.cpp header.h
+	$(CC) $(CFLAGS) -c array.cpp
 
 clean: 
-	rm *o 
+	rm *o output
 

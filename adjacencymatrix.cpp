@@ -1,33 +1,29 @@
-#include "array.cpp"
-#include <iostream> 
+#include "header.h"
 
 using namespace std;
 
-template <class dataType> class GraphMatrix {
-	public:
-	    Array<dataType> adj;
-	    int size;
-	    GraphMatrix(int sz, dataType element) {   
-	    	    size = sz;
-	    	    adj.CreateArray(size*size);
-           }
 
-	    void addEdge(int row, int col, dataType weight) {
-		int index = row * size + col;
-		if (row >= 0 && row < size && col >= 0 && col < size) {
-		    	adj.arr[index] = weight;
-		}
-	    }
+template <class dataType>  GraphMatrix<dataType>::GraphMatrix(int sz, dataType element) {   
+    size = sz;
+    adj.CreateArray(size*size);
+}
 
-	    dataType getEdge(int row, int col,dataType defaultVal) {
-		int index = row * size + col;
-		if (row >= 0 && row < size && col >= 0 && col < size) {
-		    return adj.getElement(index);
-		}
-		return defaultVal;
-	    }
+template <class dataType>  void GraphMatrix<dataType>::addEdge(int row, int col, dataType weight) {
+	int index = row * size + col;
+	if (row >= 0 && row < size && col >= 0 && col < size) {
+    		adj.arr[index] = weight;
+	}
+}
 
-    void display() {
+template <class dataType>  int GraphMatrix<dataType>::getEdge(int row, int col,int defaultVal) {
+	int index = row * size + col;
+	if (row >= 0 && row < size && col >= 0 && col < size) {
+	    return adj.getElement(index);
+	}
+	return defaultVal;
+}
+
+template <class dataType>  void GraphMatrix<dataType>::display() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 cout << getEdge(i, j, NULL) << " ";
@@ -35,8 +31,6 @@ template <class dataType> class GraphMatrix {
             cout << endl;
         }
     }
-};
-
 //int main() {
 //    int size, directed;
 //    cout << "Enter the size of the matrix: ";

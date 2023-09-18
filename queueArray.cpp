@@ -4,8 +4,8 @@ using namespace std;
 template < typename dataType>
 class queue{
 	public:
-		int size = 0;
-        	int len = 0;
+		int size;
+        	int len;
 		Array<dataType> array;
 		void create(int capacity)
 	    {
@@ -15,7 +15,17 @@ class queue{
 	    void enqueue(dataType element)
 	    {
 	     	 array.Insert(element, 0);
-             len++;
+             	len++;
+	    }
+	    bool IsEmpty()
+	    {
+	    	if(len == 0)
+	    		return true;
+	    	return false;
+	    }
+	    dataType rear()
+	    {
+	    	return array.arr[len-1];
 	    }
             void dequeue()
 	    {

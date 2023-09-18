@@ -27,19 +27,19 @@ class Stack{
 	      	array.removeFront();
 			len--;
 	    }
-	    void peek()
+	    dataType peek()
 	    {
 		 if(len == 0)
 		{	
 			cout<<"Stack is Empty"<<endl;
-			return;
+			return NULL;
 		}
-		cout<<"Top element is "<<array.arr[0]<<endl;
+		return array.arr[0];
 	    }
     
 };
 
-int main(){
+/*int main(){
             Stack<int> st;
 	    int size;
 	    cout<<"Enter the size of the stack"<<endl;
@@ -70,4 +70,4 @@ int main(){
 	        }
 	    }
   return 0;
-}
+}*/

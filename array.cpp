@@ -1,7 +1,110 @@
-#include<iostream>
 #include "header.h"
 using namespace std;
-template <class dataType> class Array
+
+template <class dataType>  Array<dataType>::Array()
+{
+	dataType* arr = new dataType[1];
+}
+
+template <class dataType> void Array<dataType>::CreateArray(int size)
+{
+	length = size;
+	arr = new dataType[size];
+	for(int i=0;i<size;i++)
+	{
+		arr[i] = 0;
+	}
+}
+
+template <class dataType> void Array<dataType>::Insert(dataType element , int index)
+{
+	dataType* arr_new = new dataType[length + 1];
+	int it = 0;
+	if(index > length)
+	{
+		cout<<"Index Out Of Bounds"<<endl;
+		return;
+	}
+	for(it ; it < index ; it++)
+	{
+		arr_new[it] = arr[it];
+	}
+	for(it = length-1 ; it >= index ; it--)
+	{
+		arr_new[it+1] = arr[it];
+	}
+	arr_new[index] = element;
+	arr = arr_new;
+	length++;
+	//cout<<"Element Inserted"<<endl;
+}
+
+template <class dataType> void Array<dataType>::removeFront()
+{
+	if(length == 0)
+	{
+		cout<<"Array is empty"<<endl;
+		return;
+	}
+	dataType* arr_new = new dataType[length - 1];
+	for(int it=1 ; it < length ; it++)
+	{
+		arr_new[it-1]  = arr[it];
+	}
+	length--;
+	arr = arr_new;
+	cout<<"Top element has been deleted"<<endl;
+}
+
+template <class dataType> void Array<dataType>::remove(int index)
+{
+	dataType* arr_new = new dataType[length - 1];
+	int element = arr[index];
+	if(index >= length)
+	{
+		//cout<<"Index Out Of Bound"<<endl;
+		return;
+	}
+	for(int it=0 ; it < index ; it++)
+	{
+		arr_new[it]  = arr[it];
+	}
+	for(int it = index + 1 ; it < length ; it++)
+	{
+		arr_new[it - 1] = arr[it];
+	}
+	length--;
+	arr = arr_new;
+	//cout<<"Element "<<element<<" Deleted from the entered index"<<endl;
+}
+
+template <class dataType> void Array<dataType>::search(dataType element)
+{
+	for(int it = 0; it < length ; it++)
+	{
+		if(arr[it] == element)
+		{
+			//cout<<"Element "<<element<<" Found at Index "<<it<<endl;
+			return;
+		}
+	}
+	//cout<<"Element NOt Found in the Array"<<endl;
+}
+
+template <class dataType> dataType Array<dataType>::getElement(int index)
+{
+	return arr[index];
+}
+template <class dataType> void Array<dataType>::Display()
+{
+	cout<<"Elements of Array are -- "<<endl;
+	for(int it = 0 ; it < length ; it++)
+	{
+		cout<<arr[it]<<" ";
+	}
+	cout<<endl;
+}
+/*template <class dataType> class Array
 {
 	public:
 
@@ -105,7 +208,13 @@ template <class dataType> class Array
 			cout<<endl;
 		}
 		
-};
+};*/
+/*int main()
+{
+	Array<int> array;
+	array.Insert(1,0);
+	array.Display();
+}*/
 // int main()
 // {
 // 	Array<int> array;
