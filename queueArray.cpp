@@ -1,5 +1,5 @@
-#include "array.cpp"
-#include<iostream>
+#include "header.h"
+
 using namespace std;
 template < typename dataType>
 class queue{

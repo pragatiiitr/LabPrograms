@@ -26,7 +26,7 @@ template <class dataType>  int GraphMatrix<dataType>::getEdge(int row, int col,i
 template <class dataType>  void GraphMatrix<dataType>::display() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                cout << getEdge(i, j, NULL) << " ";
+                cout << getEdge(i, j, 0) << " ";
             }
             cout << endl;
         }
